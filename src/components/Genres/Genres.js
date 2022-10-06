@@ -10,7 +10,7 @@ const Genres = ({
   setPage,
 }) => {
   const handleAdd = (genre) => {
-    setSelectedGenres([...setSelectedGenres, genre]);
+    setSelectedGenres([...selectedGenres, genre]);
     setGenres(genres.filter((g) => g.id !== genre.id));
     setPage(1);
   };
@@ -28,6 +28,7 @@ const Genres = ({
     );
 
     setGenres(data.genres);
+    console.log(data.genres);
   };
   useEffect(() => {
     fetchGenres();
@@ -37,22 +38,23 @@ const Genres = ({
   }, []);
   return (
     <div style={{ padding: "6px 0" }}>
-      {genres &&
-        selectedGenres.map((genre) => (
-          <Chip
-            label={genre.name}
-            style={{ margin: 2 }}
-            clickable
-            size="small"
-            color="primary"
-            key={genre.id}
-            onDelete={() => handleRemove(genre)}
-          />
-        ))}
+      {selectedGenres.map((genre) => (
+        <Chip
+          label={genre.name}
+          style={{ margin: 2 }}
+          clickable
+          size="small"
+          color="primary"
+          key={genre.id}
+          onClick={() => handleRemove(genre)}
+          onDelete={() => handleRemove(genre)}
+        />
+      ))}
       {genres.map((genre) => (
         <Chip
           style={{ margin: 2 }}
-          label={genre.id}
+          label={genre.name}
+          key={genre.id}
           clickable
           size="small"
           onClick={() => handleAdd(genre)}

@@ -60,7 +60,7 @@ export default function ContentModal({ children, media_type, id }) {
     //eslint-disable-next-line
   }, []);
   return (
-    <ThemeProvider>
+    <>
       <div
         className="media"
         onClick={handleOpen}
@@ -136,6 +136,6 @@ export default function ContentModal({ children, media_type, id }) {
           )}
         </Fade>
       </Modal>
-    </ThemeProvider>
+    </>
   );
 }
